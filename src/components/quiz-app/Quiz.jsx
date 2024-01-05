@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { quiz } from "./Quiz-Question"
+import './Quiz.css'
 
 
 
@@ -25,7 +26,7 @@ export const Quiz =()=>{
                 ?{
                     ...prev,
                     scores: prev.scores + 5,
-                    correctAnswers: prev. correctAnswers + 1
+                    correctAnswers: prev.correctAnswers + 1
                 } : {
                     ...prev,
                     wrongAnswers: prev.wrongAnswers + 1
@@ -48,21 +49,22 @@ export const Quiz =()=>{
                 }
             }
     return(
-        <>
-    { !showResult     
+    <div className="container">
+        { !showResult     
         ? <div>
             <h1> Quiz </h1>
-            <p> {question} </p>
+            <p className="question"> {question} </p>
             <ul>
                 {choices.map((answer, index)=> 
                 <li 
                 onClick={()=>onAnswerSelected(answer, index)} key={answer} 
-                className={selectedAnswerIndex === index ? 'selected-answer' : null}> 
+                className={selectedAnswerIndex === index ? 'selected-answer' : null}
+                > 
                         {answer} 
                 </li>
                 )}
             </ul>
-            <button onClick={onClickNext} disabled={selectedAnswerIndex === null}>
+            <button onClick={onClickNext} disabled={selectedAnswerIndex === null} className="button">
                 {activeQuestions === questions.length - 1 ?"Finish" : "Next"}
                 </button>
                 </div>
@@ -82,6 +84,6 @@ export const Quiz =()=>{
                 </p>
              </div>)}
             
-        </>
+    </div>
     )
 }
